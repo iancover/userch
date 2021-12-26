@@ -4,3 +4,10 @@
 
 @tailwind utilities;
 
+
+
+/*** COMPONENTS ***/
+/* Footer */
+.react-icon {
+  transform: rotate(20deg);
+}
