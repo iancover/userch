@@ -8,7 +8,7 @@ function About() {
   const daisyuiLink = 'https://daisyui.com/';
 
   return (
-    <div>
+    <div className={'mt-20'}>
       <h1 className='text-6xl mb-4'>Userch: GitHub</h1>
       <p className='font-light text-2xl mb-4'>
         A{' '}
