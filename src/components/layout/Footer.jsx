@@ -1,4 +1,4 @@
-import { IconContext } from 'react-icons';
+// import { IconContext } from 'react-icons';
 import { FaRegFileCode } from 'react-icons/fa';
 
 function Footer() {
@@ -7,11 +7,11 @@ function Footer() {
   return (
     <footer className={'footer p-10 bg-gray-700 text-gray-400 footer-center'}>
       <div>
-        <IconContext.Provider value={{ className: 'react-icon' }}>
-          <div>
+        {/* <IconContext.Provider value={{ className: 'react-icon' }}> */}
+          <div className={'rotate-12'}>
             <FaRegFileCode size={50} />
           </div>
-        </IconContext.Provider>
+        {/* </IconContext.Provider> */}
 
         <p>Copyright &copy; {footerYear} All rights reserved.</p>
       </div>
