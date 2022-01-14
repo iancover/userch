@@ -13,7 +13,9 @@ function UserSearch() {
     e.preventDefault();
     if (text === '') {
       setAlert('Please enter text to search users.', 'error');
-    } else if (!/\B@([a-z0-9](?:-(?=[a-z0-9])|[a-z0-9]){0,38}(?<=[a-z0-9]))/gi.test(text)) {
+    } else if (text.length <= 2) {
+      clearUsers();
+      setText('');
       setAlert('User not found, please enter a valid username.', 'warning');
     } else {
       searchUsers(text);
