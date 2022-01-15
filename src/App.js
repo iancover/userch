@@ -1,10 +1,14 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
+// layout components
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Alert from './components/layout/Alert';
+
+// pages
 import Home from './pages/Home';
 import About from './pages/About';
+import User from './pages/User';
 import NotFound from './pages/NotFound';
 
 // context
@@ -23,6 +27,7 @@ function App() {
               <Routes>
                 <Route path={'/'} element={<Home />} />
                 <Route path={'about'} element={<About />} />
+                <Route path={'user/:login'} element={<User />} />
                 <Route path={'*'} element={<NotFound />} />
               </Routes>
             </main>
