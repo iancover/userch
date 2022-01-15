@@ -6,17 +6,15 @@ function UserItem({ user: { login, avatar_url, html_url } }) {
   return (
     <div className='card compact side shadow-md bg-base-200'>
       <div className='card-body flex-row items-center space-x-4'>
-        {/* <div> */}
         <div className='avatar'>
           <figure className='shadow w-14 h-14'>
             <img src={avatar_url} className={'mask mask-squircle'} alt='Profile' />
           </figure>
         </div>
-        {/* </div> */}
         <div>
           <h2 className='card-title'>
             <Link
-              to={`/users/${login}`}
+              to={`/user/${login}`}
               className={'text-base-content hover:text-sky-500 hover:underline'}>
               {login}
             </Link>
