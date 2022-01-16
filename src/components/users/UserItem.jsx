@@ -4,30 +4,35 @@ import PropTypes from 'prop-types';
 
 function UserItem({ user: { login, avatar_url, html_url } }) {
   return (
-    <div className='card compact side shadow-md bg-base-200'>
-      <div className='card-body flex-row items-center space-x-4'>
-        <div className='avatar'>
-          <figure className='shadow w-14 h-14'>
-            <img src={avatar_url} className={'mask mask-squircle'} alt='Profile' />
-          </figure>
-        </div>
-        <div>
-          <h2 className='card-title'>
-            <Link
-              to={`/user/${login}`}
-              className={'text-base-content hover:text-sky-500 hover:underline'}>
+    <Link to={`/user/${login}`}>
+      <div
+        className={
+          'card compact card-side bg-base-200 shadow-md hover:bg-base-300 hover:shadow-lg hover:shadow-white/10'
+        }>
+        <div className='card-body flex-row items-center space-x-4'>
+          <div className='avatar'>
+            <figure className='shadow w-14 h-14'>
+              <img src={avatar_url} className={'mask mask-squircle'} alt='Profile' />
+            </figure>
+          </div>
+          <div>
+            <h2 className='card-title text-base-content hover:text-sky-500 hover:underline'>
               {login}
-            </Link>
-          </h2>
-          <a
-            href={html_url}
-            className={'text-base-content text-opacity-40 hover:text-teal-500 hover:underline'}>
-            <FaGithub className={'inline text-md align-middle mr-2'} />
-            <span className={'align-text-top'}>GitHub Profile</span>
-          </a>
+            </h2>
+            <button
+              className={'text-base-content text-opacity-40 hover:text-teal-500 hover:underline'}
+              onClick={e => {
+                e.preventDefault();
+                e.stopPropagation();
+                window.open(html_url);
+              }}>
+              <FaGithub className={'inline text-md align-middle mr-2'} />
+              <span className={'align-text-top'}>GitHub Profile</span>
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
