@@ -1,16 +1,24 @@
 import { useContext, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
+
+// icons
 import { FaUserFriends, FaUsers } from 'react-icons/fa';
 import { GoMarkGithub, GoRepo, GoFileCode } from 'react-icons/go';
+
+// components
 import Spinner from '../components/layout/Spinner';
+import RepoList from '../components/repos/RepoList';
+
+// context
 import GithubContext from '../context/github/GithubContext';
 
 function User() {
-  const { getUser, user, loading } = useContext(GithubContext);
+  const { loading, user, getUser, getUserRepos, repos } = useContext(GithubContext);
   const params = useParams();
 
   useEffect(() => {
     getUser(params.login);
+    getUserRepos(params.login);
   }, []);
 
   const {
@@ -142,6 +150,7 @@ function User() {
             <div className='stat-value pr-5 text-2xl md:text-4xl'>{public_gists}</div>
           </div>
         </div>
+        <RepoList repos={repos} />
       </div>
     </>
   );
