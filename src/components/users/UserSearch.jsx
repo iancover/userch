@@ -65,7 +65,7 @@ function UserSearch() {
               <div className='relative'>
                 <input
                   type='text'
-                  className={'input input-lg w-full text-black bg-gray-200'}
+                  className={'input input-lg w-full text-black bg-gray-200 rounded-xl'}
                   value={text}
                   onChange={handleChange}
                   placeholder={'Search'}
