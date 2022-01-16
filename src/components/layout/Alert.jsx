@@ -16,14 +16,14 @@ function Alert() {
               <label>{alert.msg}</label>
             </div>
           </div>
-        ) : (
+        ) : alert.type === 'warning' ? (
           <div className={'alert alert-warning mb-4'}>
             <div className='flex-1'>
               <BiError size={'1.5rem'} className={'text-yellow-500 mr-2'} />
               <label>{alert.msg}</label>
             </div>
           </div>
-        )}
+        ) : null}
       </>
     )
   );
