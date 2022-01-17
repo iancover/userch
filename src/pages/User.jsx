@@ -11,15 +11,24 @@ import RepoList from '../components/repos/RepoList';
 
 // context
 import GithubContext from '../context/github/GithubContext';
+import { getUser, getUserRepos } from '../context/github/GithubActions';
 
 function User() {
-  const { loading, user, getUser, getUserRepos, repos } = useContext(GithubContext);
+  const { user, loading, repos, dispatch } = useContext(GithubContext);
   const params = useParams();
 
   useEffect(() => {
-    getUser(params.login);
-    getUserRepos(params.login);
-  }, []);
+    dispatch({ type: 'SET_LOADING' });
+    const getUserData = async () => {
+      const userData = await getUser(params.login);
+      dispatch({ type: 'GET_USER', payload: userData });
+
+      const userRepoData = await getUserRepos(params.login);
+      dispatch({ type: 'GET_REPOS', payload: userRepoData });
+    };
+
+    getUserData();
+  }, [dispatch, params.login]);
 
   const {
     name,
@@ -69,7 +78,9 @@ function User() {
               <h1 className='text-3-xl card-title'>
                 {name}
                 <div className='ml-2 mr-1 badge badge-success'>{type}</div>
-                {hireable && <div className='mx-1 badge badge-info'>Hireable</div>}
+                {hireable && (
+                  <div className='mx-1 badge badge-info'>Hireable</div>
+                )}
               </h1>
               <p>{bio}</p>
               <div className='my-4 card-actions'>
@@ -94,7 +105,10 @@ function User() {
                   <div className='stat'>
                     <div className='stat-title text-md'>Website</div>
                     <div className='stat-value text-lg'>
-                      <a href={`https://${blog}`} target={'_blank'} rel={'noreferrer'}>
+                      <a
+                        href={`https://${blog}`}
+                        target={'_blank'}
+                        rel={'noreferrer'}>
                         {blog}
                       </a>
                     </div>
@@ -123,7 +137,9 @@ function User() {
               <FaUsers className={'text-lg md:text-5xl'} />
             </div>
             <div className='stat-title pr-5'>Followers</div>
-            <div className='stat-value pr-5 text-2xl md:text-4xl'>{followers}</div>
+            <div className='stat-value pr-5 text-2xl md:text-4xl'>
+              {followers}
+            </div>
           </div>
 
           <div className='stat'>
@@ -131,7 +147,9 @@ function User() {
               <FaUserFriends className={'text-lg md:text-5xl'} />
             </div>
             <div className='stat-title pr-5'>Following</div>
-            <div className='stat-value pr-5 text-2xl md:text-4xl'>{following}</div>
+            <div className='stat-value pr-5 text-2xl md:text-4xl'>
+              {following}
+            </div>
           </div>
 
           <div className='stat'>
@@ -139,7 +157,9 @@ function User() {
               <GoRepo className={'text-lg md:text-5xl'} />
             </div>
             <div className='stat-title pr-5'>Public Repos</div>
-            <div className='stat-value pr-5 text-2xl md:text-4xl'>{public_repos}</div>
+            <div className='stat-value pr-5 text-2xl md:text-4xl'>
+              {public_repos}
+            </div>
           </div>
 
           <div className='stat'>
@@ -147,7 +167,9 @@ function User() {
               <GoFileCode className={'text-lg md:text-5xl'} />
             </div>
             <div className='stat-title pr-5'>Public Gists</div>
-            <div className='stat-value pr-5 text-2xl md:text-4xl'>{public_gists}</div>
+            <div className='stat-value pr-5 text-2xl md:text-4xl'>
+              {public_gists}
+            </div>
           </div>
         </div>
         <RepoList repos={repos} />
