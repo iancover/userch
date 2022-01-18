@@ -4,6 +4,7 @@ import githubReducer from './GithubReducer';
 // init context
 const GithubContext = createContext();
 
+// context provider
 export const GithubProvider = ({ children }) => {
   const initialState = {
     users: [],
