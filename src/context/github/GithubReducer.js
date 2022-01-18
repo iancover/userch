@@ -1,5 +1,4 @@
-
-
+// context reducer
 const githubReducer = (state, action) => {
   let { type, payload } = action;
 
@@ -9,33 +8,27 @@ const githubReducer = (state, action) => {
         ...state,
         users: payload,
         loading: false,
-      }
+      };
 
-    case 'GET_USER':
+    case 'GET_USER_AND_REPOS':
       return {
         ...state,
-        user: payload,
+        user: payload.user,
+        repos: payload.repos,
         loading: false,
-      }
-
-    case 'GET_REPOS':
-      return {
-        ...state,
-        repos: payload,
-        loading: false,
-      }
+      };
 
     case 'SET_LOADING':
       return {
         ...state,
         loading: true,
-      }
+      };
 
     case 'CLEAR_USERS':
       return {
         ...state,
-        users: []
-      }
+        users: [],
+      };
 
     default:
       return state;

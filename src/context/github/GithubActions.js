@@ -14,13 +14,11 @@ export const searchUsers = async text => {
   return res.data.items;
 };
 
-export const getUser = async login => {
-  const res = await github.get(`/users/${login}`);
-  return res.status === 404 ? (window.location = '/notfound') : res.data;
-};
+export const getUserAndRepos = async login => {
+  const [user, repos] = await Promise.all([
+    github.get(`/users/${login}`),
+    github.get(`/users/${login}/repos`),
+  ]);
 
-export const getUserRepos = async login => {
-  const params = new URLSearchParams({ sort: 'created', per_page: 10 });
-  const res = await github.get(`/users/${login}/repos?${params}`);
-  return res.data;
+  return { user: user.data, repos: repos.data }; // payload: { user, repos }
 };
