@@ -1,5 +1,6 @@
 # Userch
 
+<html>
 <style>
   .d-btn {
     padding: 15px;
@@ -22,6 +23,7 @@
   </a>
 </div>
 <br>
+</html>
 
 A [React](https://reactjs.org/docs/getting-started.html) application to search web developer repositories and profile information using the [GitHub REST API](https://docs.github.com/en/rest).
 
