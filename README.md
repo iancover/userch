@@ -17,13 +17,14 @@
   }
 </style>
 
-<div>
-  <a href='https://userch.vercel.app' class='d-btn'>
-    ▲  Vercel <em>deploy</em>
-  </a>
-</div>
-<br>
-</html>
+
+
+▲ ![Vercel]
+
+<button>
+  My Button
+</button>
+
 
 A [React](https://reactjs.org/docs/getting-started.html) application to search web developer repositories and profile information using the [GitHub REST API](https://docs.github.com/en/rest).
 
@@ -46,3 +47,4 @@ npm run build
 
 Builds the app for production into a `/build` folder.
 
+[Vercel]: https://userch.vercel.app
